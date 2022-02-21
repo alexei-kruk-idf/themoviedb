@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:themoviedb/theme/app_button_style.dart';
 
 class AuthWidget extends StatefulWidget {
-  AuthWidget({Key? key}) : super(key: key);
+  const AuthWidget({Key? key}) : super(key: key);
 
   @override
   State<AuthWidget> createState() => _AuthWidgetState();
@@ -12,15 +12,15 @@ class AuthWidget extends StatefulWidget {
 class _AuthWidgetState extends State<AuthWidget> {
   @override
   Widget build(BuildContext context) {
-    final colorLogo = Color(0xFF01b4e4);
+    const colorLogo = Color(0xFF01b4e4);
 
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(onPressed: () => {}, icon: Icon(Icons.person)),
+          IconButton(onPressed: () => {}, icon: const Icon(Icons.person)),
           IconButton(
               onPressed: () => {},
-              icon: Icon(
+              icon: const Icon(
                 Icons.search,
                 color: colorLogo,
               ))
@@ -42,12 +42,11 @@ class _AuthWidgetState extends State<AuthWidget> {
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             children: [
-              _HeaderWidget(),
+              const _HeaderWidget(),
             ],
           ),
         ),
       ),
-      drawer: Drawer(),
     );
   }
 }
@@ -57,7 +56,7 @@ class _HeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = const TextStyle(
+    const textStyle = TextStyle(
       fontSize: 16,
       color: Colors.black,
     );
@@ -66,29 +65,29 @@ class _HeaderWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 25),
+          const SizedBox(height: 25),
           _FormWidget(),
-          SizedBox(height: 25),
-          Text(
+          const SizedBox(height: 25),
+          const Text(
             'In order to use the editing and rating capabilities of TMDb, as well as get personal recommendations you will need to login to your account. If you do not have an account, registering for an account is free and simple.',
             style: textStyle,
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           TextButton(
             style: AppButtonStyle.linkButton,
             onPressed: () {},
-            child: Text('Register'),
+            child: const Text('Register'),
           ),
-          SizedBox(height: 25),
-          Text(
+          const SizedBox(height: 25),
+          const Text(
             'If you signed up but didn`t get your verification email.',
             style: textStyle,
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           TextButton(
             style: AppButtonStyle.linkButton,
             onPressed: () {},
-            child: Text('Verify email'),
+            child: const Text('Verify email'),
           ),
         ],
       ),
@@ -97,57 +96,76 @@ class _HeaderWidget extends StatelessWidget {
 }
 
 class _FormWidget extends StatefulWidget {
-  _FormWidget({Key? key}) : super(key: key);
+  const _FormWidget({Key? key}) : super(key: key);
 
   @override
   State<_FormWidget> createState() => __FormWidgetState();
 }
 
 class __FormWidgetState extends State<_FormWidget> {
+  final _loginTextController = TextEditingController();
+  final _passwordTextController = TextEditingController();
+  String? errorText;
+
+  void _auth() {
+    final login = _loginTextController.text;
+    final password = _passwordTextController.text;
+    if (login == 'admin' && password == 'admin') {
+      errorText = null;
+      Navigator.of(context).pushReplacementNamed('/main');
+    } else {
+      errorText = 'Не верный логин или пароль';
+    }
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
-    final textFieldDecoration = InputDecoration(
+    const textFieldDecoration = InputDecoration(
       border: OutlineInputBorder(),
       contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       isCollapsed: true,
     );
-    final colorButton = const Color(0xFF01B4E4);
+    const colorButton = Color(0xFF01B4E4);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
-        Text('Имя пользователя'),
+        const Text('Имя пользователя'),
         TextField(
+          controller: _loginTextController,
           decoration: textFieldDecoration,
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
-        Text('Пароль'),
+        const Text('Пароль'),
         TextField(
+          controller: _passwordTextController,
           obscureText: true,
           decoration: textFieldDecoration,
         ),
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
         Row(
           children: [
             ElevatedButton(
-                onPressed: () {},
-                child: Text('Войти'),
+                onPressed: _auth,
+                child: const Text('Войти'),
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(colorButton),
                     foregroundColor: MaterialStateProperty.all(Colors.white),
                     textStyle: MaterialStateProperty.all(
-                      TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                      const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.w700),
                     ))),
-            SizedBox(width: 30),
+            const SizedBox(width: 30),
             TextButton(
               onPressed: () {},
               style: AppButtonStyle.linkButton,
-              child: Text('Reset password'),
+              child: const Text('Восстановить пароль'),
             ),
           ],
         )
