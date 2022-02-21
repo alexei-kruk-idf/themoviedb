@@ -107,6 +107,12 @@ class __FormWidgetState extends State<_FormWidget> {
   final _passwordTextController = TextEditingController();
   String? errorText;
 
+  @override
+  void initState() {
+    super.initState();
+    Future(() => {Navigator.of(context).pushReplacementNamed('/main')});
+  }
+
   void _auth() {
     final login = _loginTextController.text;
     final password = _passwordTextController.text;

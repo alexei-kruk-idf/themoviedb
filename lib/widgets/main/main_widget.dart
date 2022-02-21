@@ -9,11 +9,23 @@ class MainWidget extends StatefulWidget {
 }
 
 class _MainWidgetState extends State<MainWidget> {
+  int _indexNavigation = 0;
+  final arrayText = [Text('Новости'), Text('Фильмы'), Text('Сериалы')];
+
+  void _onTapBottomNavigation(int index) {
+    if (_indexNavigation != index) {
+      setState(() {
+        _indexNavigation = index;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final colorLogo = Color(0xFF01b4e4);
 
     return Scaffold(
+      body: Center(child: arrayText[_indexNavigation]),
       appBar: AppBar(
         actions: [
           IconButton(onPressed: () => {}, icon: Icon(Icons.person)),
@@ -36,7 +48,16 @@ class _MainWidgetState extends State<MainWidget> {
           ],
         ),
       ),
-      drawer: Drawer(),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _indexNavigation,
+        onTap: _onTapBottomNavigation,
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.newspaper), label: 'Новости'),
+          BottomNavigationBarItem(icon: Icon(Icons.movie), label: 'Фильмы'),
+          BottomNavigationBarItem(icon: Icon(Icons.tv), label: 'Сериалы'),
+        ],
+      ),
     );
   }
 }
