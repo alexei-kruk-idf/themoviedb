@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:themoviedb/resources/resources.dart';
+import 'package:themoviedb/widgets/custom_widget/percent_bar_widget.dart';
 
 class MovieList extends StatelessWidget {
   const MovieList({Key? key}) : super(key: key);

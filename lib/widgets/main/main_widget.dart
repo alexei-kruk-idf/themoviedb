@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:themoviedb/resources/resources.dart';
 import 'package:themoviedb/widgets/movie_list/movie_list_widget.dart';
+import 'package:themoviedb/widgets/news/news_widget.dart';
 
 class MainWidget extends StatefulWidget {
   MainWidget({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class MainWidget extends StatefulWidget {
 
 class _MainWidgetState extends State<MainWidget> {
   int _indexNavigation = 0;
-  final arrayText = [Text('Новости'), MovieList(), Text('Сериалы')];
+  final arrayText = [NewsWidget(), MovieList(), Text('Сериалы')];
 
   void _onTapBottomNavigation(int index) {
     if (_indexNavigation != index) {
