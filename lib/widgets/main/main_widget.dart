@@ -28,7 +28,18 @@ class _MainWidgetState extends State<MainWidget> {
     final colorLogo = Color(0xFF01b4e4);
 
     return Scaffold(
-      body: Center(child: arrayText[_indexNavigation]),
+      body: IndexedStack(
+        index: _indexNavigation,
+        children: [
+          Text(
+            'Новости',
+          ),
+          MovieList(),
+          Text(
+            'Сериалы',
+          ),
+        ],
+      ),
       appBar: AppBar(
         actions: [
           IconButton(onPressed: () => {}, icon: Icon(Icons.person)),
