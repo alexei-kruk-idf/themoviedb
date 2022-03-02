@@ -6,12 +6,12 @@ class NewsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final percent = 0.00;
+    const percent = 0.00;
 
     return Center(
       child: Container(
-        width: 100,
-        height: 100,
+        width: 88,
+        height: 88,
         child: PercentBarWidget(
             percent: percent,
             fillColor: Colors.black,
@@ -20,7 +20,7 @@ class NewsWidget extends StatelessWidget {
             lineWidth: 5,
             child: Text(
               (percent * 100).round().toString(),
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
             )),
         decoration: BoxDecoration(border: Border.all(color: Colors.red)),
       ),

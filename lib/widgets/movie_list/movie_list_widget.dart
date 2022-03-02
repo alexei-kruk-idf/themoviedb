@@ -18,7 +18,7 @@ class Movie {
 }
 
 class MovieList extends StatefulWidget {
-  MovieList({Key? key}) : super(key: key);
+  const MovieList({Key? key}) : super(key: key);
 
   @override
   State<MovieList> createState() => _MovieListState();
@@ -123,6 +123,7 @@ class _MovieListState extends State<MovieList> {
       description: 'Washed-up MMA fighter Cole Young, unaware of his heritage',
     ),
   ];
+
   var _filteredMovies = <Movie>[];
   final _searchController = TextEditingController();
 
@@ -145,6 +146,10 @@ class _MovieListState extends State<MovieList> {
 
     _filteredMovies = _movies;
     _searchController.addListener(_searchMovies);
+  }
+
+  void _onTapMovie(int index) {
+    Navigator.of(context).pushNamed('/main/movie_details', arguments: index);
   }
 
   @override
@@ -224,7 +229,7 @@ class _MovieListState extends State<MovieList> {
                       color: Colors.transparent,
                       child: InkWell(
                         borderRadius: BorderRadius.circular(10),
-                        onTap: () {},
+                        onTap: () => _onTapMovie(index),
                       ),
                     )
                   ],

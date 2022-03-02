@@ -5,7 +5,7 @@ import 'package:themoviedb/widgets/movie_list/movie_list_widget.dart';
 import 'package:themoviedb/widgets/news/news_widget.dart';
 
 class MainWidget extends StatefulWidget {
-  MainWidget({Key? key}) : super(key: key);
+  const MainWidget({Key? key}) : super(key: key);
 
   @override
   State<MainWidget> createState() => _MainWidgetState();
@@ -13,7 +13,11 @@ class MainWidget extends StatefulWidget {
 
 class _MainWidgetState extends State<MainWidget> {
   int _indexNavigation = 0;
-  final arrayText = [NewsWidget(), MovieList(), Text('Сериалы')];
+  final arrayText = [
+    const NewsWidget(),
+    const MovieList(),
+    const Text('Сериалы')
+  ];
 
   void _onTapBottomNavigation(int index) {
     if (_indexNavigation != index) {
@@ -25,27 +29,25 @@ class _MainWidgetState extends State<MainWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final colorLogo = Color(0xFF01b4e4);
+    const colorLogo = Color(0xFF01b4e4);
 
     return Scaffold(
       body: IndexedStack(
         index: _indexNavigation,
         children: [
-          Text(
-            'Новости',
-          ),
-          MovieList(),
-          Text(
+          const NewsWidget(),
+          const MovieList(),
+          const Text(
             'Сериалы',
           ),
         ],
       ),
       appBar: AppBar(
         actions: [
-          IconButton(onPressed: () => {}, icon: Icon(Icons.person)),
+          IconButton(onPressed: () => {}, icon: const Icon(Icons.person)),
           IconButton(
               onPressed: () => {},
-              icon: Icon(
+              icon: const Icon(
                 Icons.search,
                 color: colorLogo,
               ))
@@ -66,10 +68,11 @@ class _MainWidgetState extends State<MainWidget> {
         currentIndex: _indexNavigation,
         onTap: _onTapBottomNavigation,
         items: [
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
               icon: Icon(Icons.newspaper), label: 'Новости'),
-          BottomNavigationBarItem(icon: Icon(Icons.movie), label: 'Фильмы'),
-          BottomNavigationBarItem(icon: Icon(Icons.tv), label: 'Сериалы'),
+          const BottomNavigationBarItem(
+              icon: Icon(Icons.movie), label: 'Фильмы'),
+          const BottomNavigationBarItem(icon: Icon(Icons.tv), label: 'Сериалы'),
         ],
       ),
     );

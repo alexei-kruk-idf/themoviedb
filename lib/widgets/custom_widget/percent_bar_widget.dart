@@ -5,42 +5,49 @@ import 'package:flutter/material.dart';
 
 class PercentBarWidget extends StatelessWidget {
   final Widget child;
-
   final double percent;
   final Color fillColor;
   final Color lineColor;
   final Color freeColor;
   final double lineWidth;
+  final double width;
+  final double height;
 
-  const PercentBarWidget({
-    Key? key,
-    required this.child,
-    required this.percent,
-    required this.fillColor,
-    required this.lineColor,
-    required this.freeColor,
-    required this.lineWidth,
-  }) : super(key: key);
+  const PercentBarWidget(
+      {Key? key,
+      required this.percent,
+      required this.child,
+      this.fillColor = const Color.fromARGB(255, 10, 23, 25),
+      this.lineColor = const Color.fromARGB(255, 37, 194, 100),
+      this.freeColor = const Color.fromARGB(255, 25, 54, 31),
+      this.lineWidth = 5.0,
+      this.height = 60,
+      this.width = 60})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        CustomPaint(
-          painter: MyPainter(
-            percent: percent,
-            fillColor: fillColor,
-            lineColor: lineColor,
-            freeColor: freeColor,
-            lineWidth: lineWidth,
+    return SizedBox(
+      width: 60,
+      height: 60,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          CustomPaint(
+            painter: MyPainter(
+              percent: percent,
+              fillColor: fillColor,
+              lineColor: lineColor,
+              freeColor: freeColor,
+              lineWidth: lineWidth,
+            ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(11.0),
-          child: Center(child: child),
-        ),
-      ],
+          Padding(
+            padding: const EdgeInsets.all(11.0),
+            child: Center(child: child),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -123,7 +130,7 @@ class MyPainter extends CustomPainter {
   }
 
   Rect calculateArcsRect(Size size) {
-    final linesMargin = 3;
+    const linesMargin = 3;
     final offest = lineWidth / 2 + linesMargin;
     final arcRect = Offset(offest, offest) &
         Size(size.width - offest * 2, size.height - offest * 2);
